@@ -403,7 +403,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Black Box/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "sh.heather.Black-Box";
+				PRODUCT_BUNDLE_IDENTIFIER = sh.heather.blackbox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -414,7 +414,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Black Box/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "sh.heather.Black-Box";
+				PRODUCT_BUNDLE_IDENTIFIER = sh.heather.blackbox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
