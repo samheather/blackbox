@@ -27,7 +27,6 @@ class InSessionViewController: UIViewController {
         LocationService.sharedInstance.startUpdatingLocation()
         
         pingTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("ping"), userInfo: nil, repeats: true)
-        
     }
     
     func ping() {
@@ -38,7 +37,7 @@ class InSessionViewController: UIViewController {
             return
         }
 
-        let pingTime:Int = Int(NSTimeIntervalSince1970)
+        let pingTime:Double = NSDate().timeIntervalSince1970
         let lat:Double! = position.coordinate.latitude
         let long:Double! = position.coordinate.longitude
         let speed:Double! = position.speed
@@ -56,7 +55,7 @@ class InSessionViewController: UIViewController {
         
     }
     
-    func savePing(pingTime:Int, lat:Double, long:Double, speed:Double,
+    func savePing(pingTime:Double, lat:Double, long:Double, speed:Double,
         bearing:Double, altitude:Double, accuracy_location:Double,
         accuracy_altitude:Double, sessionKey:String) -> Bool {
             //1

@@ -26,8 +26,8 @@ class ViewController: UIViewController {
         defaults.setObject(sessionKey, forKey: "sessionKey");
         defaults.synchronize()
         
-        if (createSessionObject(sessionKey, startTime: Int(NSTimeIntervalSince1970))) {
-            self.navigationController!.pushViewController(self.storyboard!.instantiateViewControllerWithIdentifier("InSessionViewController") as! UIViewController, animated: true)
+        if (createSessionObject(sessionKey, startTime: Int(NSDate().timeIntervalSince1970))) {
+            self.navigationController!.pushViewController(self.storyboard!.instantiateViewControllerWithIdentifier("InSessionViewController") , animated: true)
         }
     }
     
@@ -54,6 +54,10 @@ class ViewController: UIViewController {
             return false
         }
 
+    }
+    
+    @IBAction func ViewSessions(sender: AnyObject) {
+        self.navigationController!.pushViewController(self.storyboard!.instantiateViewControllerWithIdentifier("ViewSessionsViewController") , animated: true)
     }
     
     override func didReceiveMemoryWarning() {

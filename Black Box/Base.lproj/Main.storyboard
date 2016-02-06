@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,10 +19,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3dY-US-tgS">
-                                <rect key="frame" x="256" y="205" width="88" height="30"/>
+                                <rect key="frame" x="113" y="134" width="88" height="30"/>
                                 <state key="normal" title="New Session"/>
                                 <connections>
                                     <action selector="CreateNewSession:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9yR-60-6U7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bpu-qT-HOh">
+                                <rect key="frame" x="108" y="217" width="99" height="30"/>
+                                <state key="normal" title="View Sessions"/>
+                                <connections>
+                                    <action selector="ViewSessions:" destination="dkx-z0-nzr" eventType="touchUpInside" id="hcP-kH-LSS"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -32,6 +40,43 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1023" y="429"/>
+        </scene>
+        <!--View Sessions View Controller-->
+        <scene sceneID="aQX-hf-j5k">
+            <objects>
+                <viewController storyboardIdentifier="ViewSessionsViewController" id="mQx-sr-OOE" customClass="ViewSessionsViewController" customModule="Black_Box" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Vfh-bW-Zya"/>
+                        <viewControllerLayoutGuide type="bottom" id="s7G-tx-YWf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="ViewSessionsViewController" id="1jF-2w-FT1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Q1u-3K-rah">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="mQx-sr-OOE" id="ZpD-60-kcx"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Q1u-3K-rah" secondAttribute="trailing" constant="-20" id="34N-gw-k8K"/>
+                            <constraint firstItem="s7G-tx-YWf" firstAttribute="top" secondItem="Q1u-3K-rah" secondAttribute="bottom" id="9Vv-HC-gNv"/>
+                            <constraint firstItem="Q1u-3K-rah" firstAttribute="leading" secondItem="1jF-2w-FT1" secondAttribute="leadingMargin" constant="-20" id="DxF-Kn-aBW"/>
+                            <constraint firstItem="Q1u-3K-rah" firstAttribute="top" secondItem="Vfh-bW-Zya" secondAttribute="bottom" constant="-64" id="Jtq-rN-TvJ"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="tableView" destination="Q1u-3K-rah" id="p7a-R2-XkF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ijq-Eu-Xda" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1351" y="1157"/>
         </scene>
         <!--In Session View Controller-->
         <scene sceneID="2EQ-Hb-LrH">

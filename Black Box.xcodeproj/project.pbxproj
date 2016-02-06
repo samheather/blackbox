@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7E61B33C1C667EFF00DFB996 /* InSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E61B33B1C667EFF00DFB996 /* InSessionViewController.swift */; };
 		7E61B33E1C6686BA00DFB996 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E61B33D1C6686BA00DFB996 /* LocationService.swift */; };
+		7E61B3421C669A0100DFB996 /* ViewSessionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E61B3411C669A0100DFB996 /* ViewSessionsViewController.swift */; };
 		7E9C41AA1C66557D00106861 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9C41A91C66557D00106861 /* AppDelegate.swift */; };
 		7E9C41AC1C66557D00106861 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9C41AB1C66557D00106861 /* ViewController.swift */; };
 		7E9C41AF1C66557D00106861 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E9C41AD1C66557D00106861 /* Main.storyboard */; };
@@ -40,6 +41,7 @@
 /* Begin PBXFileReference section */
 		7E61B33B1C667EFF00DFB996 /* InSessionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InSessionViewController.swift; sourceTree = "<group>"; };
 		7E61B33D1C6686BA00DFB996 /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		7E61B3411C669A0100DFB996 /* ViewSessionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewSessionsViewController.swift; path = ../ViewSessionsViewController.swift; sourceTree = "<group>"; };
 		7E9C41A61C66557D00106861 /* Black Box.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Black Box.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E9C41A91C66557D00106861 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E9C41AB1C66557D00106861 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				7E9C41A91C66557D00106861 /* AppDelegate.swift */,
 				7E9C41AB1C66557D00106861 /* ViewController.swift */,
 				7E61B33B1C667EFF00DFB996 /* InSessionViewController.swift */,
+				7E61B3411C669A0100DFB996 /* ViewSessionsViewController.swift */,
 				7E61B33D1C6686BA00DFB996 /* LocationService.swift */,
 				7E9C41AD1C66557D00106861 /* Main.storyboard */,
 				7E9C41B31C66557D00106861 /* Assets.xcassets */,
@@ -278,6 +281,7 @@
 				7E9C41AA1C66557D00106861 /* AppDelegate.swift in Sources */,
 				7E61B33E1C6686BA00DFB996 /* LocationService.swift in Sources */,
 				7E61B33C1C667EFF00DFB996 /* InSessionViewController.swift in Sources */,
+				7E61B3421C669A0100DFB996 /* ViewSessionsViewController.swift in Sources */,
 				7E9C41B21C66557D00106861 /* Black_Box.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
