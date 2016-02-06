@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E61B33C1C667EFF00DFB996 /* InSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E61B33B1C667EFF00DFB996 /* InSessionViewController.swift */; };
+		7E61B33E1C6686BA00DFB996 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E61B33D1C6686BA00DFB996 /* LocationService.swift */; };
 		7E9C41AA1C66557D00106861 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9C41A91C66557D00106861 /* AppDelegate.swift */; };
 		7E9C41AC1C66557D00106861 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9C41AB1C66557D00106861 /* ViewController.swift */; };
 		7E9C41AF1C66557D00106861 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E9C41AD1C66557D00106861 /* Main.storyboard */; };
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7E61B33B1C667EFF00DFB996 /* InSessionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InSessionViewController.swift; sourceTree = "<group>"; };
+		7E61B33D1C6686BA00DFB996 /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		7E9C41A61C66557D00106861 /* Black Box.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Black Box.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E9C41A91C66557D00106861 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E9C41AB1C66557D00106861 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +108,8 @@
 				7E9C41DA1C665F6500106861 /* notes */,
 				7E9C41A91C66557D00106861 /* AppDelegate.swift */,
 				7E9C41AB1C66557D00106861 /* ViewController.swift */,
+				7E61B33B1C667EFF00DFB996 /* InSessionViewController.swift */,
+				7E61B33D1C6686BA00DFB996 /* LocationService.swift */,
 				7E9C41AD1C66557D00106861 /* Main.storyboard */,
 				7E9C41B31C66557D00106861 /* Assets.xcassets */,
 				7E9C41B51C66557D00106861 /* LaunchScreen.storyboard */,
@@ -265,6 +271,8 @@
 			files = (
 				7E9C41AC1C66557D00106861 /* ViewController.swift in Sources */,
 				7E9C41AA1C66557D00106861 /* AppDelegate.swift in Sources */,
+				7E61B33E1C6686BA00DFB996 /* LocationService.swift in Sources */,
+				7E61B33C1C667EFF00DFB996 /* InSessionViewController.swift in Sources */,
 				7E9C41B21C66557D00106861 /* Black_Box.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -490,6 +498,7 @@
 				7E9C41D31C66557D00106861 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7E9C41D41C66557D00106861 /* Build configuration list for PBXNativeTarget "Black BoxTests" */ = {
 			isa = XCConfigurationList;
@@ -498,6 +507,7 @@
 				7E9C41D61C66557D00106861 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7E9C41D71C66557D00106861 /* Build configuration list for PBXNativeTarget "Black BoxUITests" */ = {
 			isa = XCConfigurationList;
@@ -506,6 +516,7 @@
 				7E9C41D91C66557D00106861 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
