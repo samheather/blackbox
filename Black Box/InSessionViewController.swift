@@ -17,10 +17,11 @@ class InSessionViewController: UIViewController {
     override func viewDidLoad() {
         print("view loaded")
         super.viewDidLoad()
-        title = "\"In Session\""
+        title = "Monitoring Journey"
         
         // Set session key
-        sessionKey = "abc"
+        let defaults = NSUserDefaults.standardUserDefaults()
+        sessionKey = String(defaults.objectForKey("sessionKey"))
         
         // Start the Location Service
         LocationService.sharedInstance.startUpdatingLocation()
@@ -46,12 +47,7 @@ class InSessionViewController: UIViewController {
         let accuracy_location:Double! = position.horizontalAccuracy
         let accuracy_altitude:Double! = position.verticalAccuracy
         
-//        if !(lat == nil && long == nil && speed == nil && bearing == nil && altitude == nil && accuracy_location == nil && accuracy_altitude == nil) {
-//            print("Some GPS data was nil, not saving")
-//            return
-//        }
-        
-        if !savePing(pingTime, lat: lat, long: long, speed: speed, bearing: bearing, altitude: altitude, accuracy_location: accuracy_location, accuracy_altitude: accuracy_altitude) {
+        if !savePing(pingTime, lat: lat, long: long, speed: speed, bearing: bearing, altitude: altitude, accuracy_location: accuracy_location, accuracy_altitude: accuracy_altitude, sessionKey: sessionKey) {
             print("Ping didn't save successfully")
         }
         else {
@@ -62,7 +58,7 @@ class InSessionViewController: UIViewController {
     
     func savePing(pingTime:Int, lat:Double, long:Double, speed:Double,
         bearing:Double, altitude:Double, accuracy_location:Double,
-        accuracy_altitude:Double) -> Bool {
+        accuracy_altitude:Double, sessionKey:String) -> Bool {
             //1
             let appDelegate =
             UIApplication.sharedApplication().delegate as! AppDelegate
@@ -85,6 +81,7 @@ class InSessionViewController: UIViewController {
             ping.setValue(altitude, forKey: "altitude")
             ping.setValue(accuracy_location, forKey: "accuracy_location")
             ping.setValue(accuracy_altitude, forKey: "accuracy_altitude")
+            ping.setValue(sessionKey, forKey: "sessionKey")
             
             //4
             do {
@@ -95,7 +92,6 @@ class InSessionViewController: UIViewController {
                 print("Could not save \(error), \(error.userInfo)")
                 return false
             }
-            return false
     }
     
     override func viewWillDisappear(animated: Bool) {

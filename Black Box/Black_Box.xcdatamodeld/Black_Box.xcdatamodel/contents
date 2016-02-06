@@ -8,14 +8,19 @@
         <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="long" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="pingTime" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="sessionKey" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="speed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <entity name="Session" syncable="YES">
         <attribute name="sessionKey" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="startTime" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
     </entity>
+    <entity name="UserInformation" syncable="YES">
+        <attribute name="currentSessionKey" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Session" positionX="-63" positionY="-18" width="128" height="75"/>
-        <element name="Ping" positionX="-63" positionY="-9" width="128" height="165"/>
+        <element name="Ping" positionX="-63" positionY="-9" width="128" height="180"/>
+        <element name="UserInformation" positionX="-54" positionY="54" width="128" height="60"/>
     </elements>
 </model>

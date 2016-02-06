@@ -13,11 +13,47 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "\"Home\""
+        title = "Home"
+        
+        // TODO - if in session, go straight to in-session page!
     }
     
     @IBAction func CreateNewSession(sender: AnyObject) {
-        self.navigationController!.pushViewController(self.storyboard!.instantiateViewControllerWithIdentifier("InSessionViewController") as! UIViewController, animated: true)
+        // Generate a new session key
+        let sessionKey = NSUUID().UUIDString
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(sessionKey, forKey: "sessionKey");
+        defaults.synchronize()
+        
+        if (createSessionObject(sessionKey, startTime: Int(NSTimeIntervalSince1970))) {
+            self.navigationController!.pushViewController(self.storyboard!.instantiateViewControllerWithIdentifier("InSessionViewController") as! UIViewController, animated: true)
+        }
+    }
+    
+    func createSessionObject(sessionKey:String, startTime:Int) -> Bool {
+        let appDelegate =
+        UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let managedContext = appDelegate.managedObjectContext
+        
+        let entity =  NSEntityDescription.entityForName("Session",
+            inManagedObjectContext:managedContext)
+        
+        let session = NSManagedObject(entity: entity!,
+            insertIntoManagedObjectContext: managedContext)
+        
+        session.setValue(sessionKey, forKey: "sessionKey")
+        session.setValue(startTime, forKey: "startTime")
+        
+        do {
+            try managedContext.save()
+            return true
+        } catch let error as NSError  {
+            print("Could not save \(error), \(error.userInfo)")
+            return false
+        }
+
     }
     
     override func didReceiveMemoryWarning() {
