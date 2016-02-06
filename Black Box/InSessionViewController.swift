@@ -15,6 +15,7 @@ class InSessionViewController: UIViewController {
     var pingTimer:NSTimer!
     
     override func viewDidLoad() {
+        print("view loaded")
         super.viewDidLoad()
         title = "\"In Session\""
         
@@ -30,15 +31,25 @@ class InSessionViewController: UIViewController {
     
     func ping() {
         let position = LocationService.sharedInstance.getLastLocation()
+        
+        if (position == nil) {
+            print("Position was nil, not saving")
+            return
+        }
 
         let pingTime:Int = Int(NSTimeIntervalSince1970)
-        let lat:Double = position.coordinate.latitude
-        let long:Double = position.coordinate.longitude
-        let speed:Double = position.speed
-        let bearing:Double = position.course
-        let altitude:Double = position.altitude
-        let accuracy_location:Double = position.horizontalAccuracy
-        let accuracy_altitude:Double = position.verticalAccuracy
+        let lat:Double! = position.coordinate.latitude
+        let long:Double! = position.coordinate.longitude
+        let speed:Double! = position.speed
+        let bearing:Double! = position.course
+        let altitude:Double! = position.altitude
+        let accuracy_location:Double! = position.horizontalAccuracy
+        let accuracy_altitude:Double! = position.verticalAccuracy
+        
+//        if !(lat == nil && long == nil && speed == nil && bearing == nil && altitude == nil && accuracy_location == nil && accuracy_altitude == nil) {
+//            print("Some GPS data was nil, not saving")
+//            return
+//        }
         
         if !savePing(pingTime, lat: lat, long: long, speed: speed, bearing: bearing, altitude: altitude, accuracy_location: accuracy_location, accuracy_altitude: accuracy_altitude) {
             print("Ping didn't save successfully")
@@ -89,6 +100,8 @@ class InSessionViewController: UIViewController {
     
     override func viewWillDisappear(animated: Bool) {
         LocationService.sharedInstance.stopUpdatingLocation()
+        pingTimer.invalidate()
+        pingTimer = nil
     }
     
     override func didReceiveMemoryWarning() {

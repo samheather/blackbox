@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,36 +17,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6C2-TW-Uj6">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3dY-US-tgS">
+                                <rect key="frame" x="256" y="205" width="88" height="30"/>
+                                <state key="normal" title="New Session"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="fqN-QO-sUL"/>
+                                    <action selector="CreateNewSession:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9yR-60-6U7"/>
                                 </connections>
-                            </tableView>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="6C2-TW-Uj6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="9Sm-y7-HnC"/>
-                            <constraint firstItem="6C2-TW-Uj6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Emm-or-iOp"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="6C2-TW-Uj6" secondAttribute="bottom" id="XNP-X5-zrI"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="6C2-TW-Uj6" secondAttribute="trailing" constant="-20" id="YGp-t8-o1d"/>
-                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="m33-Oy-0um">
-                        <barButtonItem key="rightBarButtonItem" title="Add" id="ncT-8F-0Qg">
-                            <connections>
-                                <action selector="addName:" destination="BYZ-38-t0r" id="IoA-3O-8L0"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="tableView" destination="6C2-TW-Uj6" id="UlW-6K-h74"/>
-                    </connections>
+                    <navigationItem key="navigationItem" id="m33-Oy-0um"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1023" y="429"/>
+        </scene>
+        <!--In Session View Controller-->
+        <scene sceneID="2EQ-Hb-LrH">
+            <objects>
+                <viewController storyboardIdentifier="InSessionViewController" id="dXx-PG-qM5" customClass="InSessionViewController" customModule="Black_Box" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OwX-FI-uBl"/>
+                        <viewControllerLayoutGuide type="bottom" id="atD-9H-NJD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vQF-mP-UJ5">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F50-cb-Eh1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1906" y="422"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gEy-o6-7a8">
