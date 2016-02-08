@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ViewSessionsViewController: UIViewController, UITableViewDataSource {
+class ViewSessionsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -69,6 +69,69 @@ class ViewSessionsViewController: UIViewController, UITableViewDataSource {
             cell!.textLabel!.text = dateString
             
             return cell!
+    }
+    
+    // MARK: UITableViewDataSource
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        var pings = [NSManagedObject]()
+        
+        // Get the requested session id
+        let session:NSManagedObject = sessions[indexPath.row]
+        let sessionKey:String = String(session.valueForKey("sessionKey"))
+        print(sessionKey)
+        
+        // Now retrieve the pings from CoreData
+        let appDelegate =
+        UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let managedContext = appDelegate.managedObjectContext
+        
+        let fetchRequest = NSFetchRequest(entityName: "Ping")
+        
+        // Restrict to pings from this session:
+        let predicate = NSPredicate(format: "sessionKey == %@", sessionKey)
+        fetchRequest.predicate = predicate
+        
+        // Sort by pingTime
+        let sortDescriptor = NSSortDescriptor(key: "pingTime", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        do {
+            let results =
+            try managedContext.executeFetchRequest(fetchRequest)
+            pings = results as! [NSManagedObject]
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+        // Pings now populated, need to export to CSV format
+        let csvData:String = pingsToCsv(pings)
+        print(csvData)
+        
+    }
+    
+    func pingsToCsv(pings:[NSManagedObject]) -> String {
+        var csvData:String="pingTime,latitude,longitude,location,speed,bearing,altitude,accuracy_location,accuracy_altitude"
+        for ping:NSManagedObject in pings {
+            csvData = csvData.stringByAppendingString(
+                "\n" +
+                valueForKeyAsString(ping, key: "pingTime") +
+                valueForKeyAsString(ping, key: "lat") +
+                valueForKeyAsString(ping, key: "long") +
+                valueForKeyAsString(ping, key: "lat") + "," + valueForKeyAsString(ping, key: "long") +
+                valueForKeyAsString(ping, key: "speed") +
+                valueForKeyAsString(ping, key: "bearing") +
+                valueForKeyAsString(ping, key: "altitude") +
+                valueForKeyAsString(ping, key: "accuracy_location") +
+                valueForKeyAsString(ping, key: "accuracy_altitude")
+            )
+        }
+        return csvData
+    }
+    
+    func valueForKeyAsString(object:NSManagedObject, key:String) -> String {
+        return String(object.valueForKey(key)!) + ","
     }
     
     override func didReceiveMemoryWarning() {

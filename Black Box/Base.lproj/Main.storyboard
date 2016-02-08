@@ -58,6 +58,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="mQx-sr-OOE" id="ZpD-60-kcx"/>
+                                    <outlet property="delegate" destination="mQx-sr-OOE" id="ffV-Rr-yqO"/>
                                 </connections>
                             </tableView>
                         </subviews>
