@@ -76,7 +76,7 @@ class ViewSessionsViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     // MARK: UITableViewDataSource
-    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         var pings = [NSManagedObject]()
         
