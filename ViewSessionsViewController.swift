@@ -31,6 +31,8 @@ class ViewSessionsViewController: UIViewController, UITableViewDataSource, UITab
         let managedContext = appDelegate.managedObjectContext
         
         let fetchRequest = NSFetchRequest(entityName: "Session")
+        let sortDescriptor = NSSortDescriptor(key: "startTime", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
         
         do {
             let results =
