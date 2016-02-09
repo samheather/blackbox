@@ -60,15 +60,19 @@ class ViewSessionsViewController: UIViewController, UITableViewDataSource, UITab
             
             print(session.valueForKey("startTime"))
             let startTime:Double! = session.valueForKey("startTime")?.doubleValue
-            let date = NSDate(timeIntervalSince1970: startTime)
-
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "MMM dd, yyyy HH:mm"
-            let dateString = dateFormatter.stringFromDate(date)
+            let dateString = unixTimeToString(startTime)
             
             cell!.textLabel!.text = dateString
             
             return cell!
+    }
+    
+    func unixTimeToString(unixTime:Double) -> String {
+        let date = NSDate(timeIntervalSince1970: unixTime)
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MMM dd, yyyy HH:mm:ss"
+        return dateFormatter.stringFromDate(date)
     }
     
     // MARK: UITableViewDataSource
@@ -114,15 +118,17 @@ class ViewSessionsViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func pingsToCsv(pings:[NSManagedObject]) -> String {
-        var csvData:String="pingTime,latitude,longitude,location,speed,bearing,altitude,accuracy_location,accuracy_altitude"
+        var csvData:String="pingTime,date,latitude,longitude,location,speed(m/s),speed(mph),bearing,altitude(m),accuracy_location(m),accuracy_altitude(m)"
         for ping:NSManagedObject in pings {
             csvData = csvData.stringByAppendingString(
                 "\n" +
                 valueForKeyAsString(ping, key: "pingTime") +
+                "\"" + unixTimeToString((ping.valueForKey("pingTime")?.doubleValue)!) + "\"" + "," +
                 valueForKeyAsString(ping, key: "lat") +
                 valueForKeyAsString(ping, key: "long") +
-                valueForKeyAsString(ping, key: "lat") + "," + valueForKeyAsString(ping, key: "long") +
+                String(ping.valueForKey("lat")!) + "\",\"" + String(ping.valueForKey("long")!) + "," +
                 valueForKeyAsString(ping, key: "speed") +
+                valueForSpeedInMphString(ping, key: "speed") +
                 valueForKeyAsString(ping, key: "bearing") +
                 valueForKeyAsString(ping, key: "altitude") +
                 valueForKeyAsString(ping, key: "accuracy_location") +
@@ -136,52 +142,27 @@ class ViewSessionsViewController: UIViewController, UITableViewDataSource, UITab
         return String(object.valueForKey(key)!) + ","
     }
     
-    let fileName = "sample.csv"//"sample.txt"
+    func valueForSpeedInMphString(object:NSManagedObject, key:String) -> String {
+        return String(Double(object.valueForKey(key)! as! NSNumber) * 2.23694) + ","
+    }
+    
     func writeToFile(csvData:String) {
-//        let documents:String = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
-//        let path = String(documents).stringByAppendingPathComponent("file.plist")
-        
-//        let tmpDir = NSURL.fileURLWithPath(NSTemporaryDirectory(), isDirectory: true)
-//        let path = tmpDir.URLByAppendingPathExtension(fileName)
-
-//        let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0])
-//        let path = documentsPath
-//        
-//        // Create directory if it doesn't exist already
-//        do {
-//            try NSFileManager.defaultManager().createDirectoryAtPath(path.path!, withIntermediateDirectories: true, attributes: nil)
-//        } catch let error as NSError {
-//            NSLog("Unable to create directory \(error.debugDescription)")
-//        }
-//        
-        
+        let fileName = "data.csv"
         let tmpDir = NSTemporaryDirectory() as String
-//        let file: NSFileHandle? = NSFileHandle(forUpdatingAtPath: tmpDir.stringByAppendingString("sample.csv"))
-        let file = tmpDir.stringByAppendingString("sample.csv")
-        let fileUrl:NSURL = NSURL(fileURLWithPath: file)
+        let filePath = tmpDir.stringByAppendingString(fileName)
+        let filePathUrl:NSURL = NSURL(fileURLWithPath: filePath)
+        
         // Write File
-        
-        print(file)
-        
         let filemgr = NSFileManager.defaultManager()
         
-        filemgr.createFileAtPath(file, contents: csvData.dataUsingEncoding(NSUTF8StringEncoding),
+        filemgr.createFileAtPath(filePath, contents: csvData.dataUsingEncoding(NSUTF8StringEncoding),
             attributes: nil)
-        
-/*        do {
-            try csvData.writeToFile(String(file, atomically: true, encoding: NSUTF8StringEncoding)
-            print("File sample.txt created at tmp directory")
-        } catch {
-            
-            print("Failed to create file")
-            print("\(error)")
-        }*/
-
         
         // Now show share sheet
         var sharingItems = [AnyObject]()
-        sharingItems.append(fileUrl)
+        sharingItems.append(filePathUrl)
         
+        // TODO - should exclude incompatible services like social networks and gmail in the below
         let activityViewController = UIActivityViewController(activityItems: sharingItems, applicationActivities: nil)
         self.presentViewController(activityViewController, animated: true, completion: nil)
         

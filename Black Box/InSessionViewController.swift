@@ -43,7 +43,7 @@ class InSessionViewController: UIViewController {
         let speed:Double! = position.speed
         let bearing:Double! = position.course
         let altitude:Double! = position.altitude
-        let accuracy_location:Double! = position.horizontalAccuracy
+        let accuracy_location:Double! = 555//position.horizontalAccuracy
         let accuracy_altitude:Double! = position.verticalAccuracy
         
         if !savePing(pingTime, lat: lat, long: long, speed: speed, bearing: bearing, altitude: altitude, accuracy_location: accuracy_location, accuracy_altitude: accuracy_altitude, sessionKey: sessionKey) {
