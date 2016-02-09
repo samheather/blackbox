@@ -29,6 +29,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
             print("location srvs enabled")
             locationManager.delegate = self
             locationManager.distanceFilter = kCLDistanceFilterNone
+            locationManager.headingFilter = kCLHeadingFilterNone
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
         }
     }
@@ -49,9 +50,11 @@ class LocationService: NSObject, CLLocationManagerDelegate {
     
     func startUpdatingLocation() {
         locationManager.startUpdatingLocation()
+        locationManager.startUpdatingHeading()
     }
     
     func stopUpdatingLocation() {
         locationManager.stopUpdatingLocation()
+        locationManager.stopUpdatingHeading()
     }
 }
