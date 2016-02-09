@@ -109,6 +109,8 @@ class ViewSessionsViewController: UIViewController, UITableViewDataSource, UITab
         let csvData:String = pingsToCsv(pings)
         print(csvData)
         
+        writeToFile(csvData)
+        
     }
     
     func pingsToCsv(pings:[NSManagedObject]) -> String {
@@ -132,6 +134,57 @@ class ViewSessionsViewController: UIViewController, UITableViewDataSource, UITab
     
     func valueForKeyAsString(object:NSManagedObject, key:String) -> String {
         return String(object.valueForKey(key)!) + ","
+    }
+    
+    let fileName = "sample.csv"//"sample.txt"
+    func writeToFile(csvData:String) {
+//        let documents:String = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
+//        let path = String(documents).stringByAppendingPathComponent("file.plist")
+        
+//        let tmpDir = NSURL.fileURLWithPath(NSTemporaryDirectory(), isDirectory: true)
+//        let path = tmpDir.URLByAppendingPathExtension(fileName)
+
+//        let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0])
+//        let path = documentsPath
+//        
+//        // Create directory if it doesn't exist already
+//        do {
+//            try NSFileManager.defaultManager().createDirectoryAtPath(path.path!, withIntermediateDirectories: true, attributes: nil)
+//        } catch let error as NSError {
+//            NSLog("Unable to create directory \(error.debugDescription)")
+//        }
+//        
+        
+        let tmpDir = NSTemporaryDirectory() as String
+//        let file: NSFileHandle? = NSFileHandle(forUpdatingAtPath: tmpDir.stringByAppendingString("sample.csv"))
+        let file = tmpDir.stringByAppendingString("sample.csv")
+        let fileUrl:NSURL = NSURL(fileURLWithPath: file)
+        // Write File
+        
+        print(file)
+        
+        let filemgr = NSFileManager.defaultManager()
+        
+        filemgr.createFileAtPath(file, contents: csvData.dataUsingEncoding(NSUTF8StringEncoding),
+            attributes: nil)
+        
+/*        do {
+            try csvData.writeToFile(String(file, atomically: true, encoding: NSUTF8StringEncoding)
+            print("File sample.txt created at tmp directory")
+        } catch {
+            
+            print("Failed to create file")
+            print("\(error)")
+        }*/
+
+        
+        // Now show share sheet
+        var sharingItems = [AnyObject]()
+        sharingItems.append(fileUrl)
+        
+        let activityViewController = UIActivityViewController(activityItems: sharingItems, applicationActivities: nil)
+        self.presentViewController(activityViewController, animated: true, completion: nil)
+        
     }
     
     override func didReceiveMemoryWarning() {
